@@ -1,1 +1,7 @@
-*.class
+.idea
+.gradle
+*.iml
+build/
+local.properties
+Library/build
+Sample/build

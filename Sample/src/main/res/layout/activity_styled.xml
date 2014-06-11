@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.neopixl.pixluisample.MainActivity" >
+
+    <com.neopixl.pixlui.components.textview.TextView
+        android:id="@+id/textView1"
+        style="@style/wrap_both_with_custom_font"
+        android:text="@string/hello_world"
+        />
+
+
+
+    <com.neopixl.pixlui.components.edittext.EditText
+        android:id="@+id/editText1"
+        style="@style/wrap_both_with_custom_font"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:text="@string/hello_world"
+        pixlui:copyandpaste="false"
+        pixlui:clearclipboardcontent="true"
+        pixlui:typeface="Oswald_Regular.ttf" />
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/editText1"
+        android:text="Check Normal"
+        />
+    <com.neopixl.pixlui.components.checkbox.CheckBox
+        android:id="@+id/checkbox2"
+        style="@style/wrap_both_with_custom_font"
+        android:text="Check Custom"
+        android:layout_toRightOf="@id/editText1"
+        android:layout_below="@id/checkbox1"
+        />
+
+    <com.neopixl.pixlui.components.button.Button
+        android:id="@+id/button1"
+        style="@style/wrap_both_with_custom_font"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="38dp"
+        android:text="@string/hello_world"
+         />
+
+    <com.neopixl.pixlui.components.button.Button
+        android:id="@+id/button2"
+        style="@style/wrap_both_with_custom_font"
+        android:layout_toRightOf="@+id/button1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="38dp"
+        android:text="Open Regular Version"
+        android:onClick="openRegularActivity"
+        />
+
+
+
+
+    <com.neopixl.pixlui.components.textview.AutoResizeTextView
+        android:id="@+id/TextView01"
+        style="@style/wrap_both_with_custom_font"
+        android:layout_above="@+id/editText1"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/button1"
+        android:text="@string/big_hello_world"
+     />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText5"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_marginBottom="17dp" >
+
+        <RadioButton
+            android:id="@+id/radioB1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Normal" />
+
+        <com.neopixl.pixlui.components.radiobutton.RadioButton
+            android:id="@+id/radioB2"
+            style="@style/wrap_both_with_custom_font"
+            android:text="Custom"
+            pixlui:typeface="GearedSlab.ttf" />
+    </RadioGroup>
+
+    <com.neopixl.pixlui.components.edittext.AutoCompleteEditText
+        android:id="@+id/editText5"
+        style="@style/wrap_both_with_custom_font"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="38dp"
+        android:layout_marginLeft="21dp"
+        android:ems="10"
+        android:text="@string/hello_world"
+        pixlui:clearclipboardcontent="true"
+        pixlui:copyandpaste="false"
+        />
+
+
+</RelativeLayout>

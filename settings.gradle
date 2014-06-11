@@ -1,0 +1,5 @@
+include ':PixlUI',
+        ':Sample'
+
+project(':PixlUI').projectDir = new File(settingsDir, 'Library')
+
