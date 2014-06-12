@@ -3,11 +3,11 @@
 
     <attr name="typeface" format="string" />
 
-    <attr name="allCaps" format="boolean" />
+    <attr name="textAllCaps" format="boolean" />
 
     <declare-styleable name="com.neopixl.pixlui.components.textview.TextView">
         <attr name="typeface" />
-        <attr name="allCaps"/>
+        <attr name="textAllCaps"/>
     </declare-styleable>
 
 

@@ -16,8 +16,6 @@
         android:text="@string/hello_world"
         pixlui:typeface="GearedSlab.ttf" />
 
-
-
     <com.neopixl.pixlui.components.edittext.EditText
         android:id="@+id/editText1"
         android:layout_width="200dp"

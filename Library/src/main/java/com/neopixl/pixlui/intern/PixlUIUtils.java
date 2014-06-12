@@ -18,15 +18,21 @@ import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;
 public class PixlUIUtils {
 
     public static boolean containsUppercaseStyleOrAttribute(Context ctx, int[] attrs, int uppercaseId, AttributeSet attributeSet, int defStyle) {
+        int len = attributeSet.getAttributeCount();
+        for (int i=0; i<len;i++) {
+            String name = attributeSet.getAttributeName(i);
+            if (name.equals(ATTR_TEXT_ALL_CAPS)) {
+                boolean value = attributeSet.getAttributeBooleanValue(i, false);
+                return value;
+            }
+        }
         TypedArray a = ctx.obtainStyledAttributes(attributeSet, attrs, defStyle, 0);
-        boolean returnVal =  a.getBoolean(uppercaseId, false);
-
+        boolean isUppercase = a.getBoolean(uppercaseId, false);
         a.recycle();
-        return returnVal;
+        return isUppercase;
     }
 
     public static void setCustomFont(Context ctx, TextView view, int[] attrs, int typefaceId, AttributeSet set, int defStyle) {
-
         String typefaceName = set.getAttributeValue(SCHEMA_URL, ATTR_TYPEFACE_NAME);
         if (typefaceName == null) {
             TypedArray a = ctx.obtainStyledAttributes(set, attrs, defStyle, 0);

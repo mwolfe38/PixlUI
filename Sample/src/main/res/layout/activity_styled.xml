@@ -15,8 +15,6 @@
         android:text="@string/hello_world"
         />
 
-
-
     <com.neopixl.pixlui.components.edittext.EditText
         android:id="@+id/editText1"
         style="@style/wrap_both_with_custom_font"
@@ -44,6 +42,7 @@
         android:text="Check Custom"
         android:layout_toRightOf="@id/editText1"
         android:layout_below="@id/checkbox1"
+        pixlui:textAllCaps="false"
         />
 
     <com.neopixl.pixlui.components.button.Button

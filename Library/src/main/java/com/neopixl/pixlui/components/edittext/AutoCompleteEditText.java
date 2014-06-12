@@ -238,7 +238,7 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
                     attrs, defStyle);
 
             if (allCaps) {

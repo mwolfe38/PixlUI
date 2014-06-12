@@ -48,13 +48,13 @@ Screenshot
 How use it ?
 ==========
 
-1 . Import [pixlui.jar](https://github.com/neopixl/PixlUI/releases "pixlui.jar") in your project.
+1 . Import project
 
 2 . Add your custom fonts in /assets/fonts/
 
 3 . Use it in XML:
 
-```xml
+```
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     xmlns:tools="http://schemas.android.com/tools" >
@@ -69,6 +69,16 @@ How use it ?
         pixlui:typeface="GearedSlab.ttf" />
 </RelativeLayout>
 ```
+
+Alternatively you can use typeface in styles as well like so
+
+```
+ <style name="CustomTextView">
+   <item name="typeface">GearedSlab.ttf</item>
+ </style>
+```
+
+Another feature is that all textviews can be made all caps 
 
 ![Logo](https://raw.github.com/neopixl/PixlUI/master/Sample/res/drawable-xhdpi/small.png ) ChangeLog
 ===
