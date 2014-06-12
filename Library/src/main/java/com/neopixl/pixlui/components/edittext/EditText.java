@@ -95,7 +95,6 @@ public class EditText extends android.widget.EditText {
 	 * State
 	 */
 	private boolean mOldDeviceKeyboard;
-	private boolean mOldDeviceTextAllCaps;
 	private boolean mAutoFocus;
 	private boolean mCustomPassWordTransformation;
 
@@ -112,13 +111,19 @@ public class EditText extends android.widget.EditText {
 	}
 
 	public EditText(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
+		super(context, attrs);
+        editTextVersion();
+        setCustomFont(context, attrs, 0);
+        setDisableCopyAndPaste(context, attrs);
+        setCancelClipboard(context, attrs);
+        setAutoFocus(context,attrs);
+        setAllCaps(context, attrs, 0);
 	}
 
 	public EditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		editTextVersion();
-		setCustomFont(context, attrs);
+		setCustomFont(context, attrs, defStyle);
 		setDisableCopyAndPaste(context, attrs);
 		setCancelClipboard(context, attrs);
 		setAutoFocus(context,attrs);
@@ -136,8 +141,8 @@ public class EditText extends android.widget.EditText {
     private void setAllCaps(Context ctx, AttributeSet attrs, int defStyle) {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
-                    R.styleable.com_neopixl_pixlui_components_edittext_EditText,
-                    R.styleable.com_neopixl_pixlui_components_edittext_EditText_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
                     attrs, defStyle);
 
             if (allCaps) {
@@ -171,22 +176,42 @@ public class EditText extends android.widget.EditText {
 		mCustomPassWordTransformation = false;
 	}
 
-	/**
-	 * XML methods
-	 * 
-	 * @param ctx
-	 * @param attrs
-	 */
-	private void setCustomFont(Context ctx, AttributeSet attrs) {
-		String typefaceName = attrs.getAttributeValue(
-				SCHEMA_URL, ATTR_TYPEFACE_NAME);
 
-		if (typefaceName != null) {
-			setPaintFlags(this.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG
-					| Paint.LINEAR_TEXT_FLAG);
-			setCustomFont(ctx, typefaceName);
-		}
-	}
+    /**
+     * XML methods
+     *
+     * @param ctx
+     * @param attrs
+     */
+    private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
+        PixlUIUtils.setCustomFont(ctx, this,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                attrs, defStyle);
+
+    }
+
+
+
+    /**
+     * Use this method to uppercase all char in text.
+     *
+     * @param allCaps
+     */
+    @SuppressLint("NewApi")
+    @Override
+    public void setAllCaps(boolean allCaps) {
+        if (Build.VERSION.SDK_INT >= 14) {
+            super.setAllCaps(allCaps);
+        } else {
+            if (allCaps) {
+                setTransformationMethod(new AllCapsTransformationMethod(getContext()));
+            } else {
+                setTransformationMethod(null);
+            }
+        }
+    }
+
 
 	/**
 	 * XML methods
@@ -248,24 +273,6 @@ public class EditText extends android.widget.EditText {
 		}
 	}
 
-    /**
-     * Use this method to uppercase all char in text.
-     *
-     * @param allCaps
-     */
-    @SuppressLint("NewApi")
-    @Override
-    public void setAllCaps(boolean allCaps) {
-        if (Build.VERSION.SDK_INT >= 14) {
-            super.setAllCaps(allCaps);
-        } else {
-            if (allCaps) {
-                setTransformationMethod(new AllCapsTransformationMethod(getContext()));
-            } else {
-                setTransformationMethod(null);
-            }
-        }
-    }
 
 	/**
 	 * Use this method to set a custom font in your code (/assets/fonts/) a

@@ -48,9 +48,11 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.export.AllCapsTransformationMethod;
+import com.neopixl.pixlui.R;
 import com.neopixl.pixlui.components.textview.FontFactory;
 import com.neopixl.pixlui.intern.CustomPasswordTransformationMethod;
 import com.neopixl.pixlui.intern.PixlUIConstants;
+import com.neopixl.pixlui.intern.PixlUIUtils;
 
 import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 
@@ -111,25 +113,21 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 	public AutoCompleteEditText(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		editTextVersion();
-		setCustomFont(context, attrs);
+		setCustomFont(context, attrs, 0);
 		setDisableCopyAndPaste(context, attrs);
 		setCancelClipboard(context, attrs);
+        setAllCaps(context, attrs, 0);
 		setAutoFocus(context,attrs);
-		if (isOldDeviceTextAllCaps()) {
-			setAllCaps(context, attrs);
-		}
 	}
 
 	public AutoCompleteEditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		editTextVersion();
-		setCustomFont(context, attrs);
+		setCustomFont(context, attrs, defStyle);
 		setDisableCopyAndPaste(context, attrs);
 		setCancelClipboard(context, attrs);
 		setAutoFocus(context,attrs);
-		if (isOldDeviceTextAllCaps()) {
-			setAllCaps(context, attrs);
-		}
+		setAllCaps(context, attrs, defStyle);
 	}
 
 	/**
@@ -138,11 +136,9 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 	private void editTextVersion() {
 		if (android.os.Build.VERSION.SDK_INT < 14) {
 			setOldDeviceKeyboard(true);
-			setOldDeviceTextAllCaps(true);
 
 		} else {
 			setOldDeviceKeyboard(true);
-			setOldDeviceTextAllCaps(false);
 		}
 
 		//Custom internal listener
@@ -157,22 +153,19 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		mCustomPassWordTransformation = false;
 	}
 
-	/**
-	 * XML methods
-	 * 
-	 * @param ctx
-	 * @param attrs
-	 */
-	private void setCustomFont(Context ctx, AttributeSet attrs) {
-		String typefaceName = attrs.getAttributeValue(
-				SCHEMA_URL, ATTR_TYPEFACE_NAME);
+    /**
+     * XML methods
+     *
+     * @param ctx
+     * @param attrs
+     */
+    private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
+        PixlUIUtils.setCustomFont(ctx, this,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                attrs, defStyle);
 
-		if (typefaceName != null) {
-			setPaintFlags(this.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG
-					| Paint.LINEAR_TEXT_FLAG);
-			setCustomFont(ctx, typefaceName);
-		}
-	}
+    }
 
 	/**
 	 * XML methods
@@ -206,32 +199,6 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		}
 	}
 
-	/**
-	 * XML methods
-	 *
-	 * @param ctx
-	 * @param attrs
-	 */
-	private void setAllCaps(Context ctx, AttributeSet attrs) {
-
-		if(!isInEditMode()){
-			int indexSize = attrs.getAttributeCount();
-
-			boolean allCaps = false;
-
-			for (int i = 0; i < indexSize; i++) {
-				if (attrs.getAttributeName(i).equals(
-						ATTR_TEXT_ALL_CAPS)) {
-					allCaps = attrs.getAttributeBooleanValue(i, false);
-					break;
-				}
-			}
-
-			if (allCaps && !isInEditMode()) {
-				setAllCaps(allCaps);
-			}
-		}
-	}
 
 	/**
 	 * Enable autofocus mode (for keyboard).
@@ -260,27 +227,25 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		}
 	}
 
-	/**
-	 * Use this method to uppercase all char in text.
-	 * 
-	 * @param allCaps
-	 */
-	@SuppressLint("NewApi")
-	@Override
-	public void setAllCaps(boolean allCaps) {
+    /**
+     * XML methods
+     *
+     * @param ctx
+     * @param attrs
+     */
+    @SuppressLint("NewApi")
+    private void setAllCaps(Context ctx, AttributeSet attrs, int defStyle) {
+        if(!isInEditMode()){
+            boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
+                    attrs, defStyle);
 
-		//FIXME: if user input new char, it's generate a crash on Paint methods
-		if (this.isOldDeviceTextAllCaps()) {
-			if (allCaps) {
-				setTransformationMethod(new AllCapsTransformationMethod(
-						getContext()));
-			} else {
-				setTransformationMethod(null);
-			}
-		} else {
-			super.setAllCaps(allCaps);
-		}
-	}
+            if (allCaps) {
+                setAllCaps(allCaps);
+            }
+        }
+    }
 
 	/**
 	 * Use this method to set a custom font in your code (/assets/fonts/) a
@@ -698,14 +663,6 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		public void setEdittext(AutoCompleteEditText mEdittext) {
 			this.mEdittext = mEdittext;
 		}
-	}
-
-	public boolean isOldDeviceTextAllCaps() {
-		return mOldDeviceTextAllCaps;
-	}
-
-	public void setOldDeviceTextAllCaps(boolean mOldDeviceTextAllCaps) {
-		this.mOldDeviceTextAllCaps = mOldDeviceTextAllCaps;
 	}
 
 	public boolean isOldDeviceKeyboard() {

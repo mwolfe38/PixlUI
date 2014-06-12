@@ -45,7 +45,9 @@ public class RadioButton extends android.widget.RadioButton {
 	}
 
 	public RadioButton(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
+		super(context, attrs);
+        setCustomFont(context, attrs, 0);
+        setAllCaps(context, attrs, 0);
 	}
 
 	public RadioButton(Context context, AttributeSet attrs, int defStyle) {
@@ -62,13 +64,13 @@ public class RadioButton extends android.widget.RadioButton {
      * @param attrs
      */
     private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
+
         PixlUIUtils.setCustomFont(ctx, this,
-                R.styleable.com_neopixl_pixlui_components_radiobutton_RadioButton,
-                R.styleable.com_neopixl_pixlui_components_radiobutton_RadioButton_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
                 attrs, defStyle);
 
     }
-
 
     /**
      * XML methods
@@ -80,8 +82,8 @@ public class RadioButton extends android.widget.RadioButton {
     private void setAllCaps(Context ctx, AttributeSet attrs, int defStyle) {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
-                    R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox,
-                    R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
                     attrs, defStyle);
 
             if (allCaps) {
@@ -147,14 +149,6 @@ public class RadioButton extends android.widget.RadioButton {
 		} else {
 			return false;
 		}
-	}
-
-	public boolean isOldDeviceTextAllCaps() {
-		return mOldDeviceTextAllCaps;
-	}
-
-	public void setOldDeviceTextAllCaps(boolean mOldDeviceTextAllCaps) {
-		this.mOldDeviceTextAllCaps = mOldDeviceTextAllCaps;
 	}
 
 }

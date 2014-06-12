@@ -20,6 +20,7 @@
     <com.neopixl.pixlui.components.edittext.EditText
         android:id="@+id/editText1"
         style="@style/wrap_both_with_custom_font"
+        android:layout_width="200dp"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="14dp"
@@ -65,6 +66,12 @@
         />
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal Button Here"
+        android:layout_below="@id/button1"
+        />
 
 
     <com.neopixl.pixlui.components.textview.AutoResizeTextView

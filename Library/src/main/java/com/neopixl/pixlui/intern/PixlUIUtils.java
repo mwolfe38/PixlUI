@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.neopixl.pixlui.components.textview.FontFactory;
 
+import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;
 
 /**
@@ -26,11 +27,12 @@ public class PixlUIUtils {
 
     public static void setCustomFont(Context ctx, TextView view, int[] attrs, int typefaceId, AttributeSet set, int defStyle) {
 
-        // Retrieve style attributes.
-        TypedArray a = ctx.obtainStyledAttributes(set, attrs, defStyle, 0);
-        String typefaceName = a.getString(typefaceId);
-        a.recycle();
-
+        String typefaceName = set.getAttributeValue(SCHEMA_URL, ATTR_TYPEFACE_NAME);
+        if (typefaceName == null) {
+            TypedArray a = ctx.obtainStyledAttributes(set, attrs, defStyle, 0);
+            typefaceName = a.getString(typefaceId);
+            a.recycle();
+        }
         if(typefaceName != null) {
             Typeface tf = FontFactory.getInstance(ctx).getFont(typefaceName);
             if (tf != null) {

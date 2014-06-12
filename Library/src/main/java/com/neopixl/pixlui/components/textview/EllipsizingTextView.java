@@ -69,44 +69,36 @@ public class EllipsizingTextView extends TextView {
 	}
 	
 	public EllipsizingTextView(Context context, boolean canBeEllipsized) {
-		this(context, null);
-		setCanBeEllipsized(canBeEllipsized);
+		this(context, null, canBeEllipsized);
 	}
 
 	public EllipsizingTextView(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
+		this(context, attrs, false);
 	}
 	
 	public EllipsizingTextView(Context context, AttributeSet attrs, boolean canBeEllipsized) {
-		this(context, attrs, 0);
+		super(context, attrs);
 		setCanBeEllipsized(canBeEllipsized);
 	}
 
-	@SuppressLint("Recycle")
 	public EllipsizingTextView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		
-		if(canBeEllipsized){
-			super.setEllipsize(null);
-			initialize(context, attrs);
-		}
+		this(context, attrs, defStyle, false);
 	}
 	
 	public EllipsizingTextView(Context context, AttributeSet attrs, int defStyle, boolean canBeEllipsized) {
 		super(context, attrs, defStyle);
 		setCanBeEllipsized(canBeEllipsized);
-		
 		if(canBeEllipsized){
 			super.setEllipsize(null);
 			initialize(context, attrs);
 		}
 	}
 	
-	@SuppressLint("Recycle")
 	private void initialize(Context context, AttributeSet attrs) {
 		TypedArray a = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.maxLines });
 		setMaxLines(a.getInt(0, Integer.MAX_VALUE));
 		setEndPunctuationPattern(TEXTVIEW_ELLIPSIZING_DEFAULT_END_PUNCTUATION);
+        a.recycle();
 	}
 
 	public void setEndPunctuationPattern(Pattern pattern) {
@@ -184,6 +176,9 @@ public class EllipsizingTextView extends TextView {
 	}
 
 	private void resetText() {
+        if (fullText == null) {
+            fullText = "";
+        }
 		String workingText = fullText;
 		boolean ellipsized = false;
 		Layout layout = createWorkingLayout(workingText);
@@ -245,6 +240,9 @@ public class EllipsizingTextView extends TextView {
 	}
 
 	private Layout createWorkingLayout(String workingText) {
+        if (workingText == null) {
+            throw new NullPointerException();
+        }
 		return new StaticLayout(workingText, getPaint(),
 				getWidth() - getPaddingLeft() - getPaddingRight(),
 				Alignment.ALIGN_NORMAL, lineSpacingMultiplier,

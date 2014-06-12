@@ -43,7 +43,9 @@ public class Button extends android.widget.Button {
 	}
 
 	public Button(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
+		super(context, attrs);
+        setCustomFont(context, attrs, 0);
+        setAllCaps(context, attrs, 0);
 	}
 
 	public Button(Context context, AttributeSet attrs, int defStyle) {
@@ -62,8 +64,8 @@ public class Button extends android.widget.Button {
 	private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
 
         PixlUIUtils.setCustomFont(ctx, this,
-                R.styleable.com_neopixl_pixlui_components_button_Button,
-                R.styleable.com_neopixl_pixlui_components_button_Button_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
                 attrs, defStyle);
 
 	}
@@ -78,8 +80,8 @@ public class Button extends android.widget.Button {
     private void setAllCaps(Context ctx, AttributeSet attrs, int defStyle) {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
-                    R.styleable.com_neopixl_pixlui_components_button_Button,
-                    R.styleable.com_neopixl_pixlui_components_button_Button_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
                     attrs, defStyle);
 
             if (allCaps) {
@@ -87,7 +89,6 @@ public class Button extends android.widget.Button {
             }
         }
     }
-
 
 	/**
 	 * Use this method to uppercase all char in text.

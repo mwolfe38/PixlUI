@@ -20,7 +20,7 @@
 
     <com.neopixl.pixlui.components.edittext.EditText
         android:id="@+id/editText1"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
@@ -48,7 +48,8 @@
         android:layout_below="@id/checkbox1"
         pixlui:typeface="Oswald_Regular.ttf"
         />
-    
+
+
     <com.neopixl.pixlui.components.button.Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
@@ -72,6 +73,12 @@
         android:onClick="openStyledActivity"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal Button Here"
+        android:layout_below="@id/button1"
+        />
 
         <com.neopixl.pixlui.components.edittext.AutoCompleteEditText
             android:id="@+id/editText5"

@@ -3,31 +3,13 @@
 
     <attr name="typeface" format="string" />
 
-    <attr name="textAllCaps" format="boolean" />
+    <attr name="allCaps" format="boolean" />
+
     <declare-styleable name="com.neopixl.pixlui.components.textview.TextView">
         <attr name="typeface" />
-        <attr name="textAllCaps"/>
-    </declare-styleable>
-
-    <declare-styleable name="com.neopixl.pixlui.components.button.Button">
-        <attr name="typeface" />
-        <attr name="textAllCaps" />
-    </declare-styleable>
-
-    <declare-styleable name="com.neopixl.pixlui.components.radiobutton.RadioButton">
-        <attr name="typeface" />
-        <attr name="textAllCaps" />
+        <attr name="allCaps"/>
     </declare-styleable>
 
 
-    <declare-styleable name="com.neopixl.pixlui.components.checkbox.CheckBox">
-        <attr name="typeface" />
-        <attr name="textAllCaps"/>
-    </declare-styleable>
-
-    <declare-styleable name="com.neopixl.pixlui.components.edittext.EditText">
-        <attr name="typeface" />
-        <attr name="textAllCaps"/>
-    </declare-styleable>
 
 </resources>

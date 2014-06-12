@@ -39,22 +39,25 @@ import static com.neopixl.pixlui.intern.PixlUIConstants.*;
  */
 public class CheckBox extends android.widget.CheckBox {
 
-	public CheckBox(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		setCustomFont(context, attrs, defStyle);
-	    setAllCaps(context, attrs, defStyle);
-	}
-
-	public CheckBox(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
 
 	public CheckBox(Context context) {
 		this(context, null);
 	}
 
+    public CheckBox(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setCustomFont(context, attrs, 0);
+        setAllCaps(context, attrs, 0);
+    }
 
-	/**
+    public CheckBox(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        setCustomFont(context, attrs, defStyle);
+        setAllCaps(context, attrs, defStyle);
+    }
+
+
+    /**
 	 * XML methods
 	 * 
 	 * @param ctx
@@ -63,8 +66,8 @@ public class CheckBox extends android.widget.CheckBox {
 	private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
 
         PixlUIUtils.setCustomFont(ctx, this,
-                R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox,
-                R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
                 attrs, defStyle);
 
 	}
@@ -79,8 +82,8 @@ public class CheckBox extends android.widget.CheckBox {
     private void setAllCaps(Context ctx, AttributeSet attrs, int defStyle) {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
-                    R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox,
-                    R.styleable.com_neopixl_pixlui_components_checkbox_CheckBox_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
                     attrs, defStyle);
 
             if (allCaps) {

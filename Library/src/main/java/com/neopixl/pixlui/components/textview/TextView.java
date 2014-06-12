@@ -44,7 +44,9 @@ public class TextView extends EllipsizingTextView {
 	}
 
 	public TextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        setCustomFont(context, attrs, 0);
+        setAllCaps(context, attrs, 0);
 	}
 
 	public TextView(Context context, AttributeSet attrs, int defStyle) {
@@ -56,7 +58,10 @@ public class TextView extends EllipsizingTextView {
 	}
 
 	public TextView(Context context, AttributeSet attrs, boolean canBeEllipsized) {
-		this(context, attrs, 0, canBeEllipsized);
+		super(context, attrs, canBeEllipsized);
+        setCustomFont(context, attrs, 0);
+        setAllCaps(context, attrs, 0);
+
 	}
 
 	public TextView(Context context, AttributeSet attrs, int defStyle, boolean canBeEllipsized) {
@@ -90,7 +95,7 @@ public class TextView extends EllipsizingTextView {
 		if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_allCaps,
                     attrs, defStyle);
 
             if (allCaps) {
