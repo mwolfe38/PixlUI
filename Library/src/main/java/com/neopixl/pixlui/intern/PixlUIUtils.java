@@ -18,6 +18,9 @@ import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;
 public class PixlUIUtils {
 
     public static boolean containsUppercaseStyleOrAttribute(Context ctx, int[] attrs, int uppercaseId, AttributeSet attributeSet, int defStyle) {
+        if (attributeSet == null) {
+            return false;
+        }
         int len = attributeSet.getAttributeCount();
         for (int i=0; i<len;i++) {
             String name = attributeSet.getAttributeName(i);
@@ -33,6 +36,9 @@ public class PixlUIUtils {
     }
 
     public static void setCustomFont(Context ctx, TextView view, int[] attrs, int typefaceId, AttributeSet set, int defStyle) {
+        if (set == null) {
+            return;
+        }
         String typefaceName = set.getAttributeValue(SCHEMA_URL, ATTR_TYPEFACE_NAME);
         if (typefaceName == null) {
             TypedArray a = ctx.obtainStyledAttributes(set, attrs, defStyle, 0);

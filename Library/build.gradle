@@ -15,8 +15,7 @@ apply plugin: 'android-library'
 
 dependencies {
     // Android Support
-    compile 'com.android.support:support-v4:+',
-            'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:+'
 
 }
 
