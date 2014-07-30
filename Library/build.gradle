@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 dependencies {
     // Android Support
