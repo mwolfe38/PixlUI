@@ -26,6 +26,8 @@ public class PixlUIConstants {
 
     public static String ATTR_TYPEFACE_NAME = "typeface";
 
+    public static String ATTR_LETTER_SPACING = "letterSpacing";
+
     public class LetterSpacing {
         public final static float NORMAL = 0;
     }
