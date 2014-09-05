@@ -5,11 +5,12 @@
     <attr name="typeface" format="reference|string" />
     <!--<attr name="textAllCaps" format="reference|boolean" />-->
 
+    <attr name="letterSpacing" format="reference|float" />
     <declare-styleable name="com.neopixl.pixlui.components.textview.TextView">
         <attr name="typeface"  />
         <attr name="textAllCaps"  />
+        <attr name="letterSpacing" />
     </declare-styleable>
-
 
 
 </resources>
