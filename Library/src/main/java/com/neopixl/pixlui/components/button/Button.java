@@ -26,10 +26,7 @@ import android.util.AttributeSet;
 import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
 import com.neopixl.pixlui.components.textview.FontFactory;
-import com.neopixl.pixlui.intern.PixlUIConstants;
 import com.neopixl.pixlui.intern.PixlUIUtils;
-
-import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;
 
 /**
  * Provide more possibility with Button and enable new methods on old api
@@ -65,7 +62,7 @@ public class Button extends android.widget.Button {
 
         PixlUIUtils.setCustomFont(ctx, this,
                 R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTypeface,
                 attrs, defStyle);
 
 	}
@@ -81,7 +78,7 @@ public class Button extends android.widget.Button {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTextAllCaps,
                     attrs, defStyle);
 
             if (allCaps) {

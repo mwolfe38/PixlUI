@@ -22,9 +22,9 @@ public class PixlUIConstants {
 	public static String SCHEMA_URL = "http://schemas.android.com/apk/com.neopixl.pixlui";
 	public static String SCHEMA_URL_OS ="http://schemas.android.com/apk/res/android";
 
-    public static String ATTR_TEXT_ALL_CAPS = "textAllCaps";
+    public static String ATTR_TEXT_ALL_CAPS = "pixlTextAllCaps";
 
-    public static String ATTR_TYPEFACE_NAME = "typeface";
+    public static String ATTR_TYPEFACE_NAME = "pixlTypeface";
 
     public class LetterSpacing {
         public final static float NORMAL = 0;

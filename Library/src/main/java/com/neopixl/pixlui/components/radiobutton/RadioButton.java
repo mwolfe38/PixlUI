@@ -1,11 +1,5 @@
 package com.neopixl.pixlui.components.radiobutton;
 
-import com.android.export.AllCapsTransformationMethod;
-import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.components.textview.FontFactory;
-import com.neopixl.pixlui.intern.PixlUIConstants;
-import com.neopixl.pixlui.intern.PixlUIUtils;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
@@ -13,7 +7,13 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 
-import static com.neopixl.pixlui.intern.PixlUIConstants.*;
+import com.android.export.AllCapsTransformationMethod;
+import com.neopixl.pixlui.R;
+import com.neopixl.pixlui.components.textview.FontFactory;
+import com.neopixl.pixlui.intern.PixlUIUtils;
+
+import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TYPEFACE_NAME;
+import static com.neopixl.pixlui.intern.PixlUIConstants.SCHEMA_URL;
 
 /*
  Copyright 2014 Olivier Demolliens
@@ -67,7 +67,7 @@ public class RadioButton extends android.widget.RadioButton {
 
         PixlUIUtils.setCustomFont(ctx, this,
                 R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTypeface,
                 attrs, defStyle);
 
     }
@@ -83,7 +83,7 @@ public class RadioButton extends android.widget.RadioButton {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTextAllCaps,
                     attrs, defStyle);
 
             if (allCaps) {

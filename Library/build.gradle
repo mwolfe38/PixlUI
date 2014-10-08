@@ -11,16 +11,13 @@ repositories {
     mavenCentral()
 }
 
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 dependencies {
-    // Android Support
-    compile 'com.android.support:support-v4:+',
-            'com.android.support:appcompat-v7:+'
-
+    // Android Suppor
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "20"
 }
