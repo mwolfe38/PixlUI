@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <attr name="pixlTypeface" format="reference|string" />
     <attr name="pixlTextAllCaps" format="reference|boolean" />
 
@@ -9,7 +8,5 @@
         <attr name="pixlTypeface"  />
         <attr name="pixlTextAllCaps"  />
     </declare-styleable>
-
-
 
 </resources>

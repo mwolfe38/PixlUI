@@ -19,26 +19,28 @@ import static com.neopixl.pixlui.intern.PixlUIConstants.SCHEMA_URL;
 public class PixlUIUtils {
 
     public static boolean containsUppercaseStyleOrAttribute(Context ctx, int[] attrs, int uppercaseId, AttributeSet attributeSet, int defStyle) {
-        int len = attributeSet.getAttributeCount();
+        int id=attributeSet.getAttributeResourceValue(SCHEMA_URL, ATTR_TEXT_ALL_CAPS, 0);
 
-        for (int i=0; i<len;i++) {
-            String name = attributeSet.getAttributeName(i);
-            if (name.equals(ATTR_TEXT_ALL_CAPS)) {
-                boolean value = attributeSet.getAttributeBooleanValue(i, false);
-                return value;
+        if(id==0){
+            for (int i=0; i< attributeSet.getAttributeCount(); i++) {
+
+                if (ATTR_TEXT_ALL_CAPS.equals(attributeSet.getAttributeName(i))) {
+                    return attributeSet.getAttributeBooleanValue(i, false);
+                }
             }
+        }
+        else{
+            return ctx.getResources().getBoolean(id);
         }
 
         TypedArray a = ctx.obtainStyledAttributes(attributeSet, attrs, defStyle, 0);
-        int id=a.getResourceId(uppercaseId, 0);
         boolean isUppercase;
 
-        if(id==0){
-            isUppercase = a.getBoolean(uppercaseId, false);
-        }
-        else{
-            isUppercase = ctx.getResources().getBoolean(id);
-        }
+        id=a.getResourceId(uppercaseId, 0);
+
+        isUppercase = id==0 ?
+                a.getBoolean(uppercaseId, false)
+                : ctx.getResources().getBoolean(id);
 
         a.recycle();
 
@@ -46,18 +48,21 @@ public class PixlUIUtils {
     }
 
     public static void setCustomFont(Context ctx, TextView view, int[] attrs, int typefaceId, AttributeSet set, int defStyle) {
-        String typefaceName = set.getAttributeValue(SCHEMA_URL, ATTR_TYPEFACE_NAME);
+        int id=set.getAttributeResourceValue(SCHEMA_URL, ATTR_TYPEFACE_NAME, 0);
+        String typefaceName;
+
+        typefaceName = id==0 ?
+                set.getAttributeValue(SCHEMA_URL, ATTR_TYPEFACE_NAME)
+                : ctx.getString(id);
 
         if (typefaceName == null) {
             TypedArray a = ctx.obtainStyledAttributes(set, attrs, defStyle, 0);
 
-            int id = a.getResourceId(typefaceId, 0);
-            if(id==0){
-                typefaceName = a.getString(typefaceId);
-            }
-            else{
-                typefaceName = ctx.getString(id);
-            }
+            id = a.getResourceId(typefaceId, 0);
+
+            typefaceName = id==0 ?
+                    a.getString(typefaceId)
+                    : ctx.getString(id);
 
             a.recycle();
         }
