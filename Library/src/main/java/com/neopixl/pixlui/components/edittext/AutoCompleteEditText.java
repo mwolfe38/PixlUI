@@ -17,13 +17,10 @@ permissions and limitations under the License.
  */
 package com.neopixl.pixlui.components.edittext;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.SystemClock;
@@ -47,14 +44,14 @@ import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
-import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
 import com.neopixl.pixlui.components.textview.FontFactory;
 import com.neopixl.pixlui.intern.CustomPasswordTransformationMethod;
-import com.neopixl.pixlui.intern.PixlUIConstants;
 import com.neopixl.pixlui.intern.PixlUIUtils;
 
-import static com.neopixl.pixlui.intern.PixlUIConstants.*;
+import java.util.List;
+
+import static com.neopixl.pixlui.intern.PixlUIConstants.SCHEMA_URL;
 
 /**
  * Provide more possibility with EditText and enable new methods on old api
@@ -99,12 +96,6 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 
 	private InputMethodManager mImm;
 
-	@Override
-	public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-		return new CustomInputConnection(
-				super.onCreateInputConnection(outAttrs), true, this);
-	}
-
 	public AutoCompleteEditText(Context context) {
 		super(context);
 		editTextVersion();
@@ -128,6 +119,12 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		setCancelClipboard(context, attrs);
 		setAutoFocus(context,attrs);
 		setAllCaps(context, attrs, defStyle);
+	}
+
+	@Override
+	public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+		return new CustomInputConnection(
+				super.onCreateInputConnection(outAttrs), true, this);
 	}
 
 	/**
@@ -162,7 +159,7 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
     private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
         PixlUIUtils.setCustomFont(ctx, this,
                 R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTypeface,
                 attrs, defStyle);
 
     }
@@ -238,7 +235,7 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
         if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTextAllCaps,
                     attrs, defStyle);
 
             if (allCaps) {
@@ -515,6 +512,59 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 		return false;
 	}
 
+	public boolean isOldDeviceKeyboard() {
+		return mOldDeviceKeyboard;
+	}
+
+	public void setOldDeviceKeyboard(boolean mOldDevice) {
+		this.mOldDeviceKeyboard = mOldDevice;
+	}
+
+	private AutoCompleteEditTextBatchListener getBatchListener() {
+		return listenerBatch;
+	}
+
+	public void setBatchListener(AutoCompleteEditTextBatchListener listener) {
+		this.listenerBatch = listener;
+	}
+
+	private AutoCompleteEditTextFocusListener getFocusListener() {
+		return listenerFocus;
+	}
+
+	public void setFocusListener(AutoCompleteEditTextFocusListener listenerFocus) {
+		this.listenerFocus = listenerFocus;
+	}
+
+	public CustomTextWatcher getListenerTextWatcherInternal() {
+		return listenerTextWatcherInternal;
+	}
+
+	public void setListenerTextWatcherInternal(
+			CustomTextWatcher listenerTextWatcherInternal) {
+		this.listenerTextWatcherInternal = listenerTextWatcherInternal;
+	}
+
+	public boolean isAutoFocus() {
+		return mAutoFocus;
+	}
+
+	public void setAutoFocus(boolean mAutoFocus) {
+		this.mAutoFocus = mAutoFocus;
+	}
+
+	public boolean isCustomPassWordTransformation() {
+		return mCustomPassWordTransformation;
+	}
+
+	public void setCustomPassWordTransformation(
+			boolean mCustomPassWordTransformation) {
+		this.mCustomPassWordTransformation = mCustomPassWordTransformation;
+		if(this.mCustomPassWordTransformation){
+			this.setTransformationMethod(new CustomPasswordTransformationMethod());
+		}
+	}
+
 	private class CustomTextWatcher implements TextWatcher{
 
 		private AutoCompleteEditText mEdittext;
@@ -662,59 +712,6 @@ public class AutoCompleteEditText extends android.widget.AutoCompleteTextView {
 
 		public void setEdittext(AutoCompleteEditText mEdittext) {
 			this.mEdittext = mEdittext;
-		}
-	}
-
-	public boolean isOldDeviceKeyboard() {
-		return mOldDeviceKeyboard;
-	}
-
-	public void setOldDeviceKeyboard(boolean mOldDevice) {
-		this.mOldDeviceKeyboard = mOldDevice;
-	}
-
-	private AutoCompleteEditTextBatchListener getBatchListener() {
-		return listenerBatch;
-	}
-
-	public void setBatchListener(AutoCompleteEditTextBatchListener listener) {
-		this.listenerBatch = listener;
-	}
-
-	private AutoCompleteEditTextFocusListener getFocusListener() {
-		return listenerFocus;
-	}
-
-	public void setFocusListener(AutoCompleteEditTextFocusListener listenerFocus) {
-		this.listenerFocus = listenerFocus;
-	}
-
-	public CustomTextWatcher getListenerTextWatcherInternal() {
-		return listenerTextWatcherInternal;
-	}
-
-	public void setListenerTextWatcherInternal(
-			CustomTextWatcher listenerTextWatcherInternal) {
-		this.listenerTextWatcherInternal = listenerTextWatcherInternal;
-	}
-
-	public boolean isAutoFocus() {
-		return mAutoFocus;
-	}
-
-	public void setAutoFocus(boolean mAutoFocus) {
-		this.mAutoFocus = mAutoFocus;
-	}
-
-	public boolean isCustomPassWordTransformation() {
-		return mCustomPassWordTransformation;
-	}
-
-	public void setCustomPassWordTransformation(
-			boolean mCustomPassWordTransformation) {
-		this.mCustomPassWordTransformation = mCustomPassWordTransformation;
-		if(this.mCustomPassWordTransformation){
-			this.setTransformationMethod(new CustomPasswordTransformationMethod());
 		}
 	}
 }

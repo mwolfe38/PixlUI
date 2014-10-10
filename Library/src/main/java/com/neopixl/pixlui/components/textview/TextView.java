@@ -19,17 +19,13 @@ package com.neopixl.pixlui.components.textview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 
 import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.intern.PixlUIConstants;
 import com.neopixl.pixlui.intern.PixlUIUtils;
-
-import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 
 /**
  * Provide more possibility with Button and enable new methods on old api
@@ -80,7 +76,7 @@ public class TextView extends EllipsizingTextView {
 	private void setCustomFont(Context ctx, AttributeSet attrs, int defStyle) {
         PixlUIUtils.setCustomFont(ctx, this,
                 R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                R.styleable.com_neopixl_pixlui_components_textview_TextView_typeface,
+                R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTypeface,
                 attrs, defStyle);
 	}
 
@@ -95,7 +91,7 @@ public class TextView extends EllipsizingTextView {
 		if(!isInEditMode()){
             boolean allCaps = PixlUIUtils.containsUppercaseStyleOrAttribute(ctx,
                     R.styleable.com_neopixl_pixlui_components_textview_TextView,
-                    R.styleable.com_neopixl_pixlui_components_textview_TextView_textAllCaps,
+                    R.styleable.com_neopixl_pixlui_components_textview_TextView_pixlTextAllCaps,
                     attrs, defStyle);
 
             if (allCaps) {
