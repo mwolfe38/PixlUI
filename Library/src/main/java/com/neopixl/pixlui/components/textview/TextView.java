@@ -133,7 +133,7 @@ public class TextView extends EllipsizingTextView {
     }
 
     private void applyLetterSpacing() {
-        if (isInEditMode()) { return; }
+
         if (mOriginalText == null || mOriginalText.length() < 2 || mLetterSpacing == LETTER_SPACING_NORMAL || mLetterSpacing == 0.0f) {
             super.setText(mOriginalText, BufferType.NORMAL);
             return;
