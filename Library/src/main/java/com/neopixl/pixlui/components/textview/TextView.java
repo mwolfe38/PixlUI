@@ -108,8 +108,7 @@ public class TextView extends android.widget.TextView {
 //	}
 
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    private void adjustForLineBreaks() {
         Editable editable = getEditableText();
         if (editable == null) {
             return;
@@ -183,6 +182,11 @@ public class TextView extends android.widget.TextView {
         if (insertCount != 0) {
             setText(editable);
         }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        adjustForLineBreaks();
     }
 
     @Override
