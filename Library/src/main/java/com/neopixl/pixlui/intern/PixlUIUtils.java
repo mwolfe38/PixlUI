@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.neopixl.pixlui.components.textview.FontFactory;
+import com.neopixl.pixlui.FontFactory;
 
 import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;

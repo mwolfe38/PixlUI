@@ -25,21 +25,15 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Editable;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ScaleXSpan;
 import android.util.AttributeSet;
-import android.view.View;
 
 import com.android.export.AllCapsTransformationMethod;
+import com.neopixl.pixlui.FontFactory;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.intern.PixlUIConstants;
 import com.neopixl.pixlui.intern.PixlUIUtils;
-
-import java.nio.CharBuffer;
-
-import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 
 /**
  * Provide more possibility with Button and enable new methods on old api
@@ -64,8 +58,6 @@ public class TextView extends android.widget.TextView {
     private static final int NOWRAP_END_LEN = NOWRAP_END.length();
 
     private CharSequence mOriginalText;
-
-    private CharSequence mLastSpacingAppliedToString = null;
 
     private BufferType mBufferType = BufferType.NORMAL;
 
@@ -243,15 +235,27 @@ public class TextView extends android.widget.TextView {
             return;
         }
 
-        final SpannableStringBuilder builder =  new SpannableStringBuilder(mOriginalText.toString());
+        final SpannableStringBuilder builder =  new SpannableStringBuilder();
+        float spacingMultiplier = mLetterSpacing;
+        final float MAX_SINGLE_SPACE = 1.5f;
+        int spaceInsertionCount = 1;
+        if (mLetterSpacing > MAX_SINGLE_SPACE) {
+            spaceInsertionCount = 1 + (int) Math.floor(mLetterSpacing / MAX_SINGLE_SPACE);
+            spacingMultiplier = mLetterSpacing / spaceInsertionCount;
 
-        for (int i = mOriginalText.length() - 1; i >= 1; i--)
-        {
-            builder.insert(i, NONBREAKING_SPACE);
-            builder.setSpan(new ScaleXSpan(mLetterSpacing), i, i + 1,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        mLastSpacingAppliedToString = mOriginalText;
+        String insertion = new String(new char[spaceInsertionCount]).replace('\0', NONBREAKING_SPACE.charAt(0));
+
+        for (int i = 0; i<mOriginalText.length(); i++)
+        {
+            int idx = i*(1+spaceInsertionCount);
+            builder.insert(idx, mOriginalText.subSequence(i, i+1));
+            if (i < mOriginalText.length()-1) {
+                builder.insert(idx + 1, insertion);
+                builder.setSpan(new ScaleXSpan(spacingMultiplier), idx + 1, idx + 1 + spaceInsertionCount,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
         if (mBufferType == BufferType.NORMAL) {
             mBufferType = BufferType.SPANNABLE;
         }

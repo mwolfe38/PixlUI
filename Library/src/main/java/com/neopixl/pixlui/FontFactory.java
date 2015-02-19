@@ -15,7 +15,7 @@ ANY KIND, either express or implied. See the License for the specific language g
 
 permissions and limitations under the License.
  */
-package com.neopixl.pixlui.components.textview;
+package com.neopixl.pixlui;
 
 import java.util.HashMap;
 

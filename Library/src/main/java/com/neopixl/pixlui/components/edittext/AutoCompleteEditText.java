@@ -23,7 +23,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.SystemClock;
@@ -47,11 +46,9 @@ import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
-import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.components.textview.FontFactory;
+import com.neopixl.pixlui.FontFactory;
 import com.neopixl.pixlui.intern.CustomPasswordTransformationMethod;
-import com.neopixl.pixlui.intern.PixlUIConstants;
 import com.neopixl.pixlui.intern.PixlUIUtils;
 
 import static com.neopixl.pixlui.intern.PixlUIConstants.*;

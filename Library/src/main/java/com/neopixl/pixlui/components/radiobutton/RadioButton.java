@@ -2,8 +2,7 @@ package com.neopixl.pixlui.components.radiobutton;
 
 import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.components.textview.FontFactory;
-import com.neopixl.pixlui.intern.PixlUIConstants;
+import com.neopixl.pixlui.FontFactory;
 import com.neopixl.pixlui.intern.PixlUIUtils;
 
 import android.annotation.SuppressLint;

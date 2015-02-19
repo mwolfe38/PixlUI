@@ -25,11 +25,8 @@ import android.util.AttributeSet;
 
 import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.components.textview.FontFactory;
-import com.neopixl.pixlui.intern.PixlUIConstants;
+import com.neopixl.pixlui.FontFactory;
 import com.neopixl.pixlui.intern.PixlUIUtils;
-
-import static com.neopixl.pixlui.intern.PixlUIConstants.ATTR_TEXT_ALL_CAPS;
 
 /**
  * Provide more possibility with Button and enable new methods on old api

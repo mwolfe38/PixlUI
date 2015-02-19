@@ -19,18 +19,14 @@ package com.neopixl.pixlui.components.checkbox;
 
 import com.android.export.AllCapsTransformationMethod;
 import com.neopixl.pixlui.R;
-import com.neopixl.pixlui.components.textview.FontFactory;
-import com.neopixl.pixlui.intern.PixlUIConstants;
+import com.neopixl.pixlui.FontFactory;
 import com.neopixl.pixlui.intern.PixlUIUtils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
-
-import static com.neopixl.pixlui.intern.PixlUIConstants.*;
 
 /**
  * Provide more possibility with CheckBox and enable new methods on old api
